@@ -18,10 +18,17 @@ public class Modele extends Observable {
 	int tentatives=0;
 	
 	public Modele() {
-		this.combinaison=new Rangee(this);
+		this.combinaison=new Rangee();
+		this.combinaison.jetons[0] = Color.black;
+		this.combinaison.jetons[1] = Color.red;
+		this.combinaison.jetons[2] = Color.green;
+		this.combinaison.jetons[3] = Color.blue;
+
 		this.propositions=new Rangee[this.N_TENTATIVES];	
-		System.out.println("Longueur prop");
-		System.out.println(propositions[0]);
+		// On initialise toutes les propositions en tant que nouvelles rangee
+		for (int i = 0; i < propositions.length; i++) {
+			propositions[i] = new Rangee();
+		}
 	}
 	
 	public void selection(Color coul) {
@@ -29,12 +36,12 @@ public class Modele extends Observable {
 		
 		int i = 0;
 		//System.out.println(combinaison.jetons[i]);
-		while (i < combinaison.jetons.length && combinaison.jetons[i] != null) {
+		// Tant que l'on a pas dépassé la taille d'une rangee on ou que 
+		while (i < propositions[tentatives].jetons.length && propositions[tentatives].jetons[i] != Color.gray) {
 			i += 1;
 		}
-		combinaison.jetons[i] = coul;
-		//System.out.println(i);
+		propositions[tentatives].jetons[i] = coul;
 		
-		this.notifyObservers(this.combinaison);
+		this.notifyObservers(this.propositions[tentatives]);
 	}
 }

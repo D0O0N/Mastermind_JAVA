@@ -35,7 +35,7 @@ public class VuePropositions extends Canvas implements Observer{
 		Color[] listJetons = ((Rangee)arg).jetons;
 		int i = 0;
 		while (i < listJetons.length && listJetons[i] != null) {
-			this.coul.set(i,((Rangee)arg).jetons[i]) ;
+			this.coul.set(i,listJetons[i]) ;
 			i += 1;
 		}
 

@@ -13,12 +13,17 @@ public class Rangee {
 	public enum Etat{
 		VIDE, EN_COURS,COMPLETE
 	}
-	public Rangee(Modele m) {
-		Etat etat=Etat.VIDE;
-		this.modl=m;
+	Etat etat=Etat.VIDE;
+	public Rangee() {
+		
+		//this.modl=m;
 		this.noirs=0;
 		this.blancs=0;
-		this.jetons = new Color[m.DIFFICULTE];
+		this.jetons = new Color[4];
+		this.jetons[0] = Color.gray;
+		this.jetons[1] = Color.gray;
+		this.jetons[2] = Color.gray;
+		this.jetons[3] = Color.gray;
 		System.out.println("longueeeur");
 		System.out.println(jetons.length);
 		this.indiceJeton=0;
