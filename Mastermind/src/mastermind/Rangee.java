@@ -14,6 +14,7 @@ public class Rangee {
 		VIDE, EN_COURS,COMPLETE
 	}
 	Etat etat=Etat.VIDE;
+	int taille = 4;
 	public Rangee() {
 		
 		//this.modl=m;

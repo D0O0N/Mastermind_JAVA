@@ -12,33 +12,41 @@ import java.util.Observer;
 public class VuePropositions extends Canvas implements Observer{
 
 	public ArrayList<Color> coul= new ArrayList<Color>() ;
+	public int place;
+	public Rangee[] propositions;
+	
 	public VuePropositions(ItemListener l,Modele m) {
 		this.setBackground(Color.GRAY);
-		this.setSize(400,700);
-		this.coul.add(Color.gray) ;
-		this.coul.add(Color.gray) ;
-		this.coul.add(Color.gray) ;
-		this.coul.add(Color.gray) ;
+		this.setSize(400,700);/*
+		this.coul.add(Color.red) ;
+		this.coul.add(Color.red) ;
+		this.coul.add(Color.red) ;
+		this.coul.add(Color.red) ;*/
 		m.addObserver(this);
+		
+		this.propositions=new Rangee[10];	
+		// On initialise toutes les propositions en tant que nouvelles rangee
+		for (int i = 0; i < propositions.length; i++) {
+			propositions[i] = new Rangee();
+		}
 	}
 	
 	public void paint(Graphics g) {
 		int r = 40;
-		for (int i = 0; i < 4 ; i++) {
-			g.setColor(coul.get(i));
-			g.fillOval((r + 10)*i + 20, 10, r, r);
+		for (int i = 0; i < propositions.length; i++) {
+			for (int j = 0; j < propositions[0].taille; j++) {
+				g.setColor(propositions[i].jetons[j]);
+				g.fillOval(20+(j * (r+15)), 20+(i * (r + 20)) , r, r);
+			}
+			
 		}
+		
+		
 		
 	}
 	@Override
 	public void update(Observable o, Object arg) {
-		Color[] listJetons = ((Rangee)arg).jetons;
-		int i = 0;
-		while (i < listJetons.length && listJetons[i] != null) {
-			this.coul.set(i,listJetons[i]) ;
-			i += 1;
-		}
-
+		this.propositions = (Rangee[])arg;
 		repaint();
 	}
 }

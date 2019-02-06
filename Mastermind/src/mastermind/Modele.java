@@ -34,14 +34,15 @@ public class Modele extends Observable {
 	public void selection(Color coul) {
 		this.setChanged();
 		
-		int i = 0;
-		//System.out.println(combinaison.jetons[i]);
-		// Tant que l'on a pas dépassé la taille d'une rangee on ou que 
-		while (i < propositions[tentatives].jetons.length && propositions[tentatives].jetons[i] != Color.gray) {
-			i += 1;
+		if (propositions[tentatives].indiceJeton < propositions[tentatives].taille) propositions[tentatives].indiceJeton += 1;
+		else {
+			tentatives += 1;
+			propositions[tentatives].indiceJeton = 1; 
 		}
-		propositions[tentatives].jetons[i] = coul;
 		
-		this.notifyObservers(this.propositions[tentatives]);
+		propositions[tentatives].jetons[   propositions[tentatives].indiceJeton - 1   ] = coul;
+		
+		
+		this.notifyObservers(this.propositions);
 	}
 }
