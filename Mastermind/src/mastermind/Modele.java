@@ -20,7 +20,7 @@ public class Modele extends Observable {
 	public Modele() {
 		this.combinaison=new Rangee();
 		this.combinaison.jetons[0] = Color.black;
-		this.combinaison.jetons[1] = Color.red;
+		this.combinaison.jetons[1] = Color.black;
 		this.combinaison.jetons[2] = Color.green;
 		this.combinaison.jetons[3] = Color.blue;
 
@@ -32,17 +32,27 @@ public class Modele extends Observable {
 	}
 	
 	public void selection(Color coul) {
-		this.setChanged();
+			
 		
-		if (propositions[tentatives].indiceJeton < propositions[tentatives].taille) propositions[tentatives].indiceJeton += 1;
-		else {
+		propositions[tentatives].addJeton(coul);
+		
+		if (propositions[tentatives].etat == Rangee.Etat.COMPLETE) {
+			if (propositions[tentatives].equals(combinaison)) {
+				System.out.println("t treau faurt");
+			}
+			else {
+				System.out.println("raté");
+			}
 			tentatives += 1;
-			propositions[tentatives].indiceJeton = 1; 
+
 		}
 		
-		propositions[tentatives].jetons[   propositions[tentatives].indiceJeton - 1   ] = coul;
 		
+			
+
 		
+		this.setChanged();
 		this.notifyObservers(this.propositions);
 	}
+	
 }

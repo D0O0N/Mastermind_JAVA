@@ -20,10 +20,11 @@ public class Controleur implements ItemListener,ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
 		Object source = e.getSource();
 		if (e.getSource() instanceof Button) {
-		System.out.println(((Button)source).getBackground());
-		this.modl.selection(((Button)source).getBackground());
+			//System.out.println(((Button)source).getBackground());
+			this.modl.selection(((Button)source).getBackground());
 		}
 	}
 	
